@@ -1,0 +1,11 @@
+@import url('tailwindcss/base');
+@import url('tailwindcss/components');
+@import url('tailwindcss/utilities');
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* @tailwind base;
+@tailwind utilities; */
+
+[x-cloak] {
+    display: none;
+}
