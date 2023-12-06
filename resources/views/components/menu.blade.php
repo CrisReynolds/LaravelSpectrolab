@@ -122,6 +122,8 @@
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-truck-field"></i> Ver Proveedores</a>
                     <a href="{{route('vista_unidades')}}"
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-cube"></i> Ver Unidades</a>
+                    <a href="{{route('vista_solicitantes')}}"
+                        class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-user-group"></i> Ver Solicitantes</a>
                 </nav>
             </div>
             <!--contenido-->

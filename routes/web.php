@@ -27,6 +27,8 @@ Route::get('/inventario', function () {
     return view('insumos.registro_insumos');})->name('vista_insumos');
 Route::get('/unidades', function () {
     return view('unidades.ver-unidades');})->name('vista_unidades');
+Route::get('/solicitantes', function () {
+    return view('solicitantes.ver-solicitantes');})->name('vista_solicitantes');
 Route::get('/proveedores', function () {
     return view('proveedores.ver-proveedores');})->name('vista_proveedores');
 Route::get('/consumos', function () {

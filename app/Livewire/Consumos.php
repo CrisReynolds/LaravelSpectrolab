@@ -3,16 +3,22 @@
 namespace App\Livewire;
 
 use App\Models\Consumo;
+use App\Models\User;
+use App\Models\Solicitante;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Consumos extends Component
 {
     use WithPagination;
-    public $fecha_consumo,$consumoId;
+    public $fecha_consumo,$consumoId,$usuario_id,$solicitante_id,$num_vale_salida,$observaciones,$parametro,$descripcion;
 
     protected $rules = [
-        //'unidad_ref' => 'required|string|min:3',
+        'fecha_consumo' => 'required|date',
+        'num_vale_salida' => 'required|string',
+        'solicitante_id' => 'required',
+        'usuario_id' => 'required',
+        
         // otras reglas de validación...
     ];
     
@@ -20,6 +26,8 @@ class Consumos extends Component
     {
         return view('livewire.consumos',[
             'consumos' => Consumo::paginate(10),
+            'usuarios' => User::all(),
+            'solicitantes' => Solicitante::all(),
         ]);
     }
 
@@ -27,7 +35,7 @@ class Consumos extends Component
 
     public function create()
     {
-        $this->reset('consumoId');
+        $this->reset('consumoId','fecha_consumo','usuario_id','solicitante_id','num_vale_salida','observaciones','parametro','descripcion');
         $this->openModal();
     }
     public function openModal()
@@ -43,15 +51,22 @@ class Consumos extends Component
     {
         $this->validate();
         Consumo::create([
+            'consumoId' => $this->consumoId,
             'fecha_consumo' => $this->fecha_consumo,
+            'usuario_id' => $this->usuario_id,
+            'solicitante_id' => $this->solicitante_id,
+            'num_vale_salida' => $this->num_vale_salida,
+            'observaciones' => $this->observaciones,
+            'parametro' => $this->parametro,
+            'descripcion' => $this->descripcion,
         ]);
         session()->flash('success', 'Consumo registrado correctamente.');
         
-        $this->reset('fecha_consumo');
+        $this->reset('fecha_consumo','usuario_id','solicitante_id','num_vale_salida','observaciones','parametro','descripcion','consumoId');
         $this->closeModal();
     }
 
-    public function deleteUnidad($id)
+    public function deleteConsumo($id)
     {
         try{
             Consumo::find($id)->delete();
@@ -66,6 +81,12 @@ class Consumos extends Component
         $consumo = Consumo::findOrFail($id);
         $this->consumoId = $id;
         $this->fecha_consumo = $consumo->fecha_consumo;
+        $this->usuario_id = $consumo->usuario_id;
+        $this->solicitante_id = $consumo->solicitante_id;
+        $this->num_vale_salida = $consumo->num_vale_salida;
+        $this->observaciones = $consumo->observaciones;
+        $this->parametro = $consumo->parametro;
+        $this->descripcion = $consumo->descripcion;
         $this->openModal();
     }
 
@@ -76,10 +97,16 @@ class Consumos extends Component
             $consumo = Consumo::findOrFail($this->consumoId);
             $consumo->update([
                 'fecha_consumo' => $this->fecha_consumo,
+                'usuario_id' => $this->usuario_id,
+                'solicitante_id' => $this->solicitante_id,
+                'num_vale_salida' => $this->num_vale_salida,
+                'observaciones' => $this->observaciones,
+                'parametro' => $this->parametro,
+                'descripcion' => $this->descripcion,
             ]);
             session()->flash('success', 'Consumo actualizado correctamente.');
             $this->closeModal();
-            $this->reset('fecha_consumo', 'unidadId');
+            $this->reset('fecha_consumo','usuario_id','solicitante_id','num_vale_salida','observaciones','parametro','descripcion');
         }
     }
 

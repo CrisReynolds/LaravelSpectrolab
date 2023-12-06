@@ -53,7 +53,7 @@ class Unidades extends Component
         ]);
         session()->flash('success', 'Unidad creada correctamente.');
         
-        $this->reset('unidad_ref');
+        $this->reset('unidad_ref',);
         $this->closeModal();
     }
 

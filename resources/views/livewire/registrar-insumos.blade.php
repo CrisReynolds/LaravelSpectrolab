@@ -42,7 +42,7 @@
                             {{$insumo->id}}
                         </th>
                         <td class="px-6 py-4">
-                            {{$insumo->compra->fecha_compra->format('Y-m-d');}}
+                            {{-- {{$insumo->compra->fecha_compra->format('Y-m-d');}} --}}
                         </td>
                         <td class="px-6 py-4">
                             {{$insumo->stock}}

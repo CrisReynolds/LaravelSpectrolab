@@ -33,8 +33,50 @@
             <h2 class="text-2xl font-bold mb-4">{{ $consumoId ? 'Editar Consumo' : 'Regisrar Consumo' }}</h2>
             <form wire:submit.prevent="{{ $consumoId ? 'update' : 'store' }}">
                         <div class="mb-4">
-                            <label for="fecha_consumo" class="block text-gray-700 font-bold mb-2">Fecha:</label>
+                            <label for="fecha_consumo" class="block text-gray-700 font-bold mb-2">Fecha Consumo:</label>
                             <input type="date" wire:model="fecha_consumo" id="fecha_consumo" class="w-full border border-gray-300 px-4 py-2 rounded">
+                            @error('fecha_consumo')
+                            <div class="mb-4">
+                                <small class="text-red-600">{{'El dato es requerido'}}</small>
+                            </div>
+                            @enderror
+                            <label for="num_vale_salida" class="block text-gray-700 font-bold mb-2">Número de vale de salida:</label>
+                            <input type="number" wire:model="num_vale_salida" id="num_vale_salida" class="w-full border border-gray-300 px-4 py-2 rounded">
+                            @error('num_vale_salida')
+                            <div class="mb-4">
+                                <small class="text-red-600">{{'El dato es requerido'}}</small>
+                            </div>
+                            @enderror
+                            <label for="observaciones" class="block text-gray-700 font-bold mb-2">Observaciones:</label>
+                            <input type="text" wire:model="observaciones" id="observaciones" class="w-full border border-gray-300 px-4 py-2 rounded">
+                            <label for="parametro" class="block text-gray-700 font-bold mb-2">Parámetro:</label>
+                            <input type="text" wire:model="parametro" id="parametro" class="w-full border border-gray-300 px-4 py-2 rounded">
+                            <label for="descripcion" class="block text-gray-700 font-bold mb-2">Descripcion:</label>
+                            <input type="text" wire:model="descripcion" id="descripcion" class="w-full border border-gray-300 px-4 py-2 rounded">
+                            <label for="solicitante_id" class="block text-gray-700 font-bold mb-2">Solicitante:</label>
+                            <select wire:model="solicitante_id" id="solicitante_id" class="w-full border border-gray-300 px-4 py-2 rounded">
+                                <option value="">Selecciona un solicitante</option>
+                                    @foreach ($solicitantes as $solicitante)
+                                    <option value="{{$solicitante->id}}">{{$solicitante->solicitante_ref}}</option>
+                                    @endforeach
+                                </select>
+                                @error('solcitante_id')
+                            <div class="mb-4">
+                                <small class="text-red-600">{{'El dato es requerido'}}</small>
+                            </div>
+                            @enderror
+                                <label for="usuario_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
+                                <select wire:model="usuario_id" id="usuario_id" class="w-full border border-gray-300 px-4 py-2 rounded">
+                                <option value="">Selecciona un usuario</option>
+                                    @foreach ($usuarios as $usuario)
+                                    <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('usuario_id')
+                            <div class="mb-4">
+                                <small class="text-red-600">{{'El dato es requerido'}}</small>
+                            </div>
+                            @enderror
                         </div>
                         <div class="flex justify-end">
     
@@ -55,68 +97,70 @@
                             Id
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Fecha
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Cantidad
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Unidad
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Detalle
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Marca
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Codigo
+                            Fecha Consumo
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Numero de vale de salida
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Observaciones
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Parametro
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Descripcion
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Solicitante
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            
+                        </th>  
                         <th scope="col" class="px-6 py-3">
                             
                         </th>        
                     </tr>
                 </thead>
                 <tbody>  
+                @foreach ($consumos as $consumo)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            1
+                            {{ $consumo->id }}
                         </th>
                         <td class="px-6 py-4">
-                            2022-12-10
+                            {{ $consumo->fecha_consumo }}
                         </td>
                         <td class="px-6 py-4">
-                            2
+                            {{ $consumo->num_vale_salida }}
                         </td>
                         <td class="px-6 py-4">
-                            Gramos 
+                            {{ $consumo->observaciones }} 
                         </td>
                         <td class="px-6 py-4">
-                            1,1 Fenantrolina Monohidrato
+                            {{ $consumo->parametro }}
                         </td>
                         <td class="px-6 py-4">
-                            Merk 
+                            {{ $consumo->descripcion }}
                         </td>
                         <td class="px-6 py-4">
-                            1,07225,0005 
-                        </td>
-                        <td class="px-6 py-4">
-                            27054
+                            {{ $consumo->solicitante->solicitante_ref }}
                         </td>
 
                         <td class="flex items-center px-6 py-4 space-x-3">
-                            <button class="btn bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"> 
+                            <button wire:click="edit({{ $consumo->id }})" class="btn bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"> 
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <button onclick="return confirm('Esta seguro de eliminar este registro?') || event.stopImmediatePropagation()" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                            <button onclick="return confirm('Esta seguro de eliminar este registro?') || event.stopImmediatePropagation()" wire:click="deleteConsumo({{$consumo->id}})" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                             {{-- <a href="" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center"> <i class="fa-solid fa-trash"></i></a> --}}
+                            <td>
+                                <a href="#" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">Ver detalle</a>
+                            </td>
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
     
