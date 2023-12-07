@@ -43,18 +43,21 @@ class Insumo extends Model
 		'stock_minimo' => 'int',
 		'es_narcotico' => 'bool',
 		'unidad_id' => 'int',
-		'categoria_id' => 'int'
+		'categoria_id' => 'int',
+		'proveedor_id' => 'int',
 	];
 
 	protected $fillable = [
 		'codigo',
 		'detalle',
+		'marca',
 		'precio',
 		'stock',
 		'stock_minimo',
 		'es_narcotico',
 		'unidad_id',
-		'categoria_id'
+		'categoria_id',
+		'proveedor_id',
 	];
 
 	protected $listeners = [
