@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class DetalleConsumo
- * 
+ *
  * @property int $id
  * @property float $cantidad
  * @property float $precio_consumo
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $insumo_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Compra $compra
  * @property Insumo $insumo
  *

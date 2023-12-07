@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class DetalleCompra
- * 
+ *
  * @property int $id
  * @property float $cantidad
  * @property float $precio_compra
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $insumo_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Compra $compra
  * @property Insumo $insumo
  *
@@ -30,13 +30,17 @@ class DetalleCompra extends Model
 	protected $table = 'detalle_compras';
 
 	protected $casts = [
-		'compra_id' => 'int',
-		'insumo_id' => 'int'
+		'compras_id' => 'int',
+		'insumo_id' => 'int',
+        'observacion_insumo',
+        'cantidad'
 	];
 
 	protected $fillable = [
-		'compra_id',
-		'insumo_id'
+		'compras_id',
+		'insumo_id',
+        'observacion_insumo',
+        'cantidad'
 	];
 
 	public function compra()

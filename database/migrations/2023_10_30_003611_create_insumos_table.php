@@ -92,6 +92,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('consumos_id')->references('id')->on('consumos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
+            $table->double('cantidad', 12, 2);
             $table->timestamps();
         });
 
@@ -99,6 +100,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('compras_id')->references('id')->on('compras')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('observacion_insumo', 100)->nullable();
+            $table->double('cantidad', 12, 2);
             $table->timestamps();
         });
     }
@@ -115,7 +118,7 @@ return new class extends Migration
         Schema::dropIfExists('proveedores');
         Schema::dropIfExists('compras');
         Schema::dropIfExists('consumos');
-        Schema::dropIfExists('detalle_consumos');  
-        Schema::dropIfExists('detalle_compras'); 
+        Schema::dropIfExists('detalle_consumos');
+        Schema::dropIfExists('detalle_compras');
     }
 };
