@@ -35,7 +35,7 @@ Route::get('/consumos', function () {
     return view('consumos.ver-consumos');})->name('vista_consumos');
 Route::get('/compras', function () {
     return view('compras.ver-compras');})->name('vista_compras');
-Route::get('/compras/{id}/detalle', [DetalleCompras::class,'detalle'])->name('compras.detalle');
+Route::get('/compras/{id}/detalle', [DetalleCompras::class,'render'])->name('compras.detalle');
 // Route::delete("inventario/{insumo}",[InsumosController::class,"confirmarInsumoEliminacion"])->name("eliminar_insumo");
 Route::delete("inventario/{insumo}", [InsumosController::class, 'desttoy'])->name('eliminar-insumo');
 

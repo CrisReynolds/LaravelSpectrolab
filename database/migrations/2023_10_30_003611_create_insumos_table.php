@@ -65,10 +65,10 @@ return new class extends Migration
             $table->string('detalle',200);
             $table->string('marca',50)->nullable();
             $table->double('precio',12,4);
-            $table->double('stock',12,2);
+            //$table->double('stock',12,2);
             $table->integer('stock_minimo')->nullable();
             $table->boolean('es_narcotico')->default(false);
-            $table->string('observacion_insumo',60)->nullable();
+            //$table->string('observacion_insumo',60)->nullable();
             $table->foreignId('unidad_id')->references('id')->on('unidades')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('categoria_id')->references('id')->on('categorias')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('proveedor_id')->references('id')->on('proveedores')->onUpdate('cascade')->onDelete('cascade');
@@ -91,6 +91,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('consumos_id')->references('id')->on('consumos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
+            $table->double('cantidad', 12, 2);
             $table->timestamps();
         });
 
@@ -98,6 +99,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('compras_id')->references('id')->on('compras')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('observacion_insumo', 100)->nullable();
+            $table->double('cantidad', 12, 2);
             $table->timestamps();
         });
     }
@@ -114,7 +117,7 @@ return new class extends Migration
         Schema::dropIfExists('proveedores');
         Schema::dropIfExists('compras');
         Schema::dropIfExists('consumos');
-        Schema::dropIfExists('detalle_consumos');  
-        Schema::dropIfExists('detalle_compras'); 
+        Schema::dropIfExists('detalle_consumos');
+        Schema::dropIfExists('detalle_compras');
     }
 };
