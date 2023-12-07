@@ -52,7 +52,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_compra');
             $table->date('fecha_entrega')->nullable();
-            $table->double('importe',16,4);
+            //$table->double('importe',16,4);
             $table->integer('num_factura');
             $table->string('num_vale_ingreso')->unique();
             $table->foreignId('proveedor_id')->references('id')->on('proveedores')->onUpdate('cascade')->onDelete('cascade');
@@ -65,7 +65,7 @@ return new class extends Migration
             $table->string('codigo',80)->nullable();
             $table->string('detalle',200);
             $table->string('marca',50)->nullable();
-            $table->double('precio',12,4);
+            //$table->double('precio',12,4);
            // $table->double('stock',12,2);
             $table->integer('stock_minimo')->nullable();
             $table->boolean('es_narcotico')->default(false);
@@ -102,6 +102,7 @@ return new class extends Migration
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
             $table->string('observacion_insumo', 100)->nullable();
             $table->double('cantidad', 12, 2);
+            $table->double('importe', 16, 4);
             $table->timestamps();
         });
     }
