@@ -4,6 +4,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\InsumosController;
 use App\Livewire\DetalleCompras;
 use App\Livewire\Compras;
+use App\Livewire\DetalleConsumo;
 use App\Livewire\RegistrarInsumos;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,7 @@ Route::get('/consumos', function () {
 Route::get('/compras', function () {
     return view('compras.ver-compras');})->name('vista_compras');
 Route::get('/compras/{id}/detalle', [DetalleCompras::class,'render'])->name('compras.detalle');
+Route::get('/consumos/{id}/detalle', [DetalleConsumo::class, 'index'])->name('consumo.detalle');
 // Route::delete("inventario/{insumo}",[InsumosController::class,"confirmarInsumoEliminacion"])->name("eliminar_insumo");
 Route::delete("inventario/{insumo}", [InsumosController::class, 'desttoy'])->name('eliminar-insumo');
 

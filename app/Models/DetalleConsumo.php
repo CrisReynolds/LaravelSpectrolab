@@ -30,13 +30,14 @@ class DetalleConsumo extends Model
 	protected $table = 'detalle_consumos';
 
 	protected $casts = [
-		'consumo_id' => 'int',
+		'consumos_id' => 'int',
 		'insumo_id' => 'int'
 	];
 
 	protected $fillable = [
-		'consumo_id',
-		'insumo_id'
+		'consumos_id',
+		'insumo_id',
+        'cantidad'
 	];
 
 	public function consumo()

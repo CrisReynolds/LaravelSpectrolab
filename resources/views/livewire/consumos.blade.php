@@ -79,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="flex justify-end">
-    
+
                             <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">Guardar</button>
                             <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" wire:click="closeModal">Cancelar</button>
                         </div>
@@ -88,7 +88,7 @@
             </div>
             @endif
         </section>
-        
+
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-black uppercase bg-blue-300 dark:bg-gray-700 dark:text-gray-400">
@@ -115,14 +115,14 @@
                             Solicitante
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            
-                        </th>  
+
+                        </th>
                         <th scope="col" class="px-6 py-3">
-                            
-                        </th>        
+
+                        </th>
                     </tr>
                 </thead>
-                <tbody>  
+                <tbody>
                 @foreach ($consumos as $consumo)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -135,7 +135,7 @@
                             {{ $consumo->num_vale_salida }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $consumo->observaciones }} 
+                            {{ $consumo->observaciones }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $consumo->parametro }}
@@ -148,7 +148,7 @@
                         </td>
 
                         <td class="flex items-center px-6 py-4 space-x-3">
-                            <button wire:click="edit({{ $consumo->id }})" class="btn bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"> 
+                            <button wire:click="edit({{ $consumo->id }})" class="btn bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button onclick="return confirm('Esta seguro de eliminar este registro?') || event.stopImmediatePropagation()" wire:click="deleteConsumo({{$consumo->id}})" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
@@ -156,18 +156,17 @@
                             </button>
                             {{-- <a href="" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center"> <i class="fa-solid fa-trash"></i></a> --}}
                             <td>
-                                <a href="#" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">Ver detalle</a>
+                                <a href="{{route('consumo.detalle', $consumo->id)}}" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">Ver detalle</a>
                             </td>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-    
+
             {{ $consumos->links() }} <!-- Aquí se muestra la paginación -->
         </div>
         <!-- resources/views/auth/login.blade.php -->
         </x-menu>
     </div>
-        
-        
+

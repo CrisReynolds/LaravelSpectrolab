@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Insumo
- * 
+ *
  * @property int $id
  * @property string|null $codigo
  * @property string $detalle
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $categoria_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Categoria $categoria
  * @property Unidad $unidad
  * @property Collection|DetalleCompra[] $detalle_compras
@@ -39,8 +39,8 @@ class Insumo extends Model
 
 	protected $casts = [
 		'precio' => 'float',
-		'stock' => 'float',
-		'stock_minimo' => 'int',
+		//'stock' => 'float',
+		//'stock_minimo' => 'int',
 		'es_narcotico' => 'bool',
 		'unidad_id' => 'int',
 		'categoria_id' => 'int',
@@ -51,8 +51,8 @@ class Insumo extends Model
 		'codigo',
 		'detalle',
 		'marca',
-		'precio',
-		'stock',
+		//'precio',
+		//'stock',
 		'stock_minimo',
 		'es_narcotico',
 		'unidad_id',

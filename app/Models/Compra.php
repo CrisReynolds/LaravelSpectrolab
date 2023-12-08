@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Compra
- * 
+ *
  * @property int $id
  * @property Carbon $fecha_compra
  * @property Carbon|null $fecha_entrega
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $usuario_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Proveedor $proveedor
  * @property User $user
  * @property Collection|DetalleCompra[] $detalle_compras
@@ -38,7 +38,7 @@ class Compra extends Model
 	protected $casts = [
 		'fecha_compra' => 'date',
 		'fecha_entrega' => 'date',
-		'importe' => 'float',
+		//'importe' => 'float',
 		'num_factura' => 'int',
 		'num_vale_ingreso' => 'string',
 		'proveedor_id' => 'int',
@@ -48,7 +48,7 @@ class Compra extends Model
 	protected $fillable = [
 		'fecha_compra',
 		'fecha_entrega',
-		'importe',
+		//'importe',
 		'num_factura',
 		'num_vale_ingreso',
 		'proveedor_id',
