@@ -109,10 +109,10 @@
                     <a href="{{ route('dashboard') }}"
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i
                             class="fas fa-laptop-code"></i> Principal</a>
-                    <a href="{{route('vista_insumos')}}"
+                    {{-- <a href="{{route('vista_insumos')}}" --}}
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i
                         class="fa-solid fa-user-pen"></i> Cuenta</a>
-                    <a href="{{route('vista_insumos')}}"
+                    {{-- <a href="{{route('vista_insumos')}}" --}}
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-boxes-packing"></i> Ver articulos</a>
                     <a href="{{route('vista_compras')}}"
                         class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-store"></i> Registrar compra</a>
