@@ -30,7 +30,7 @@ class RegistrarInsumos extends Component
         'unidad_id' => 'required|integer',
         'proveedor_id' => 'required',
         'categoria_id' => 'required|integer',
-        'precio' => 'required|numeric',
+        //'precio' => 'required|numeric',
         // otras reglas de validación...
     ];
 
@@ -38,7 +38,7 @@ class RegistrarInsumos extends Component
 
     public function create()
     {
-        $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id','precio','es_narcotico','marca','stock_minimo','codigo');
+        $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id',/* 'precio', */'es_narcotico','marca','stock_minimo','codigo');
         $this->openModal();
     }
     public function openModal()
@@ -59,14 +59,14 @@ class RegistrarInsumos extends Component
             'proveedor_id' => $this->proveedor_id,
             'categoria_id' => $this->categoria_id,
             'codigo' => $this->codigo,
-            'precio' => $this->precio,
+            //'precio' => $this->precio,
             'marca' => $this->marca,
             'es_narcotico' => $this->es_narcotico,
             'stock_minimo' => $this->stock_minimo,
         ]);
         session()->flash('success', 'Artículo creado correctamente.');
-        
-        $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id','precio',
+
+        $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id',/* 'precio', */
                     'es_narcotico','marca','stock_minimo','codigo');
         $this->closeModal();
     }
@@ -89,7 +89,7 @@ class RegistrarInsumos extends Component
         $this->unidad_id = $insumo->unidad_id;
         $this->proveedor_id = $insumo->proveedor_id;
         $this->categoria_id = $insumo->categoria_id;
-        $this->precio = $insumo->precio;
+        //$this->precio = $insumo->precio;
         $this->marca = $insumo->marca;
         $this->es_narcotico = $insumo->es_narcotico;
         $this->stock_minimo = $insumo->stock_minimo;
@@ -107,7 +107,7 @@ class RegistrarInsumos extends Component
                 'unidad_id' => $this->unidad_id,
                 'proveedor_id' => $this->proveedor_id,
                 'categoria_id' => $this->categoria_id,
-                'precio' => $this->precio,
+                //'precio' => $this->precio,
                 'marca' => $this->marca,
                 'es_narcotico' => $this->es_narcotico,
                 'stock_minimo' => $this->stock_minimo,
@@ -115,10 +115,10 @@ class RegistrarInsumos extends Component
             ]);
             session()->flash('success', 'Artículo actualizado correctamente.');
             $this->closeModal();
-            $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id','precio',
+            $this->reset('detalle','insumoId','unidad_id','proveedor_id','categoria_id',/* 'precio', */
                         'es_narcotico','marca','stock_minimo','codigo');
         }
     }
 
-    
+
 }

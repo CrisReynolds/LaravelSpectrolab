@@ -9,38 +9,54 @@
                 d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
         </svg>
         <h2 class="text-2xl font-bold mb-4">{{ $compraId ? 'Editar Compra' : 'Registrar Compra' }}</h2>
+
         <form wire:submit.prevent="{{ $compraId ? 'update' : 'store' }}">
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full group">
+                    <label for="fecha_compra" class="block text-gray-700 font-bold mb-2">Fecha de
+                        compra:<span class="text-red-600">*</span></label>
+                    <input type="date" wire:model="fecha_compra" id="fecha_compra"
+                        class="w-full border border-gray-300 px-4 py-2 rounded">
+                    @error('fecha_compra')
+                        <div class="mb-4">
+                            <small class="text-red-600">{{ 'El dato es requerido' }}</small>
+                        </div>
+                    @enderror
+                </div>
+                <div class="relative z-0 w-full group">
+                    <label for="fecha_entrega" class="block text-gray-700 font-bold mb-2">Fecha de
+                        entrega:</label>
+                    <input type="date" wire:model="fecha_entrega" id="fecha_entrega"
+                        class="w-full border border-gray-300 px-4 py-2 rounded">
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full group">
+                    <label for="num_factura" class="block text-gray-700 font-bold mb-2">Número de
+                    factura:<span class="text-red-600">*</span></label>
+                    <input type="number" wire:model="num_factura" id="num_factura"
+                    class="w-full border border-gray-300 px-4 py-2 rounded">
+                    @error('num_factura')
+                        <div class="mb-4">
+                            <small class="text-red-600">{{ 'El dato es requerido' }}</small>
+                        </div>
+                    @enderror
+                </div>
+                <div class="relative z-0 w-full group">
+                    <label for="num_vale_ingreso" class="block text-gray-700 font-bold mb-2">No. de vale
+                        de ingreso:<span class="text-red-600">*</span></label>
+                    <input type="text" wire:model="num_vale_ingreso" id="num_vale_ingreso" placeholder="1/2023"
+                        class="w-full border border-gray-300 px-4 py-2 rounded">
+                    @error('num_vale_ingreso')
+                        <div class="mb-4">
+                            <small class="text-red-600">{{ 'Error en el formato' }}</small>
+                        </div>
+                    @enderror
+                </div>
+            </div>
             <div class="mb-4">
-                <label for="fecha_compra" class="block text-gray-700 font-bold mb-2">Fecha de
-                    compra:</label>
-                <input type="date" wire:model="fecha_compra" id="fecha_compra"
-                    class="w-full border border-gray-300 px-4 py-2 rounded">
-                @error('fecha_compra')
-                    <div class="mb-4">
-                        <small class="text-red-600">{{ 'El dato es requerido' }}</small>
-                    </div>
-                @enderror
-                <label for="fecha_entrega" class="block text-gray-700 font-bold mb-2">Fecha de
-                    entrega:</label>
-                <input type="date" wire:model="fecha_entrega" id="fecha_entrega"
-                    class="w-full border border-gray-300 px-4 py-2 rounded">
-                <label for="importe" class="block text-gray-700 font-bold mb-2">Importe:</label>
-                <input type="number" wire:model="importe" id="importe" step="0.01"
-                    class="w-full border border-gray-300 px-4 py-2 rounded">
-                <label for="num_factura" class="block text-gray-700 font-bold mb-2">Número de
-                    factura:</label>
-                <input type="number" wire:model="num_factura" id="num_factura"
-                    class="w-full border border-gray-300 px-4 py-2 rounded">
-                <label for="num_vale_ingreso" class="block text-gray-700 font-bold mb-2">Número de vale
-                    de ingreso:</label>
-                <input type="text" wire:model="num_vale_ingreso" id="num_vale_ingreso" placeholder="1/2023"
-                    class="w-full border border-gray-300 px-4 py-2 rounded">
-                @error('num_vale_ingreso')
-                    <div class="mb-4">
-                        <small class="text-red-600">{{ 'Error en el formato' }}</small>
-                    </div>
-                @enderror
-                <label for="proveedor_id" class="block text-gray-700 font-bold mb-2">Proveedor:</label>
+
+                <label for="proveedor_id" class="block text-gray-700 font-bold mb-2">Proveedor:<span class="text-red-600">*</span></label>
                 <select wire:model="proveedor_id" id="proveedor_id"
                     class="w-full border border-gray-300 px-4 py-2 rounded">
                     <option value="">Selecciona un proveedor</option>
@@ -53,7 +69,8 @@
                         <small class="text-red-600">{{ 'El dato es requerido' }}</small>
                     </div>
                 @enderror
-                <label for="usuario_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
+
+                {{-- <label for="usuario_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
                 <select wire:model="usuario_id" id="usuario_id" class="w-full border border-gray-300 px-4 py-2 rounded">
                     <option value="">Selecciona un usuario</option>
                     @foreach ($usuarios as $usuario)
@@ -64,7 +81,7 @@
                     <div class="mb-4">
                         <small class="text-red-600">{{ 'Error de usuario' }}</small>
                     </div>
-                @enderror
+                @enderror --}}
             </div>
             <div class="flex justify-end">
 

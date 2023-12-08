@@ -33,6 +33,7 @@ class DetalleCompra extends Model
 		'compras_id' => 'int',
 		'insumo_id' => 'int',
         'observacion_insumo',
+        'importe',
         'cantidad'
 	];
 
@@ -40,6 +41,7 @@ class DetalleCompra extends Model
 		'compras_id',
 		'insumo_id',
         'observacion_insumo',
+        'importe',
         'cantidad'
 	];
 

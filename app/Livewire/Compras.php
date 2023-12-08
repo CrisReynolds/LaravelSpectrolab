@@ -14,20 +14,20 @@ use Psy\Readline\Hoa\Console;
 class Compras extends Component
 {
     use WithPagination;
-    public $fecha_compra, $fecha_entrega, $importe, $num_factura, $num_vale_ingreso, $compraId, $proveedor_id, $usuario_id;
+    public $fecha_compra, $fecha_entrega, $num_factura, $num_vale_ingreso, $compraId, $proveedor_id, $usuario_id;
     /* Objetos */
     public $objCompra, $objDetalleCompra, $objInsumos;
     /* Detalle compra */
-    public $compras_id, $insumo_id, $observacion_insumo, $cantidad;
+    public $compras_id, $insumo_id, $observacion_insumo, $cantidad, $importe;
 
     protected $rules = [
         'fecha_compra' => 'required|date',
         'fecha_entrega' => 'required|date',
-        'importe' => 'required|numeric',
+        //'importe' => 'required|numeric',
         'num_factura' => 'required|integer',
         'num_vale_ingreso' => 'required|string',
         'proveedor_id' => 'required|integer',
-        'usuario_id' => 'required',
+        //'usuario_id' => 'required',
 
         // otras reglas de validación...
     ];
@@ -45,7 +45,7 @@ class Compras extends Component
 
     public function create()
     {
-        $this->reset('fecha_compra', 'fecha_entrega', 'importe', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
+        $this->reset('fecha_compra', 'fecha_entrega'/* , 'importe' */, 'num_factura', 'num_vale_ingreso', 'proveedor_id'/* , 'usuario_id' */);
         $this->openModal();
     }
     public function openModal()
@@ -63,11 +63,11 @@ class Compras extends Component
         Compra::create([
             'fecha_compra' => $this->fecha_compra,
             'fecha_entrega' => $this->fecha_entrega,
-            'importe' => $this->importe,
+            //'importe' => $this->importe,
             'num_factura' => $this->num_factura,
             'num_vale_ingreso' => $this->num_vale_ingreso,
             'proveedor_id' => $this->proveedor_id,
-            'usuario_id' => $this->usuario_id,
+            'usuario_id' => auth()->user()->id,
         ]);
         session()->flash('success', 'Compra registrada correctamente.');
 
@@ -91,7 +91,7 @@ class Compras extends Component
         $this->compraId = $id;
         $this->fecha_compra = $compra->fecha_compra;
         $this->fecha_entrega = $compra->fecha_entrega;
-        $this->importe = $compra->importe;
+        //$this->importe = $compra->importe;
         $this->num_factura = $compra->num_factura;
         $this->num_vale_ingreso = $compra->num_vale_ingreso;
         $this->proveedor_id = $compra->proveedor_id;
@@ -107,7 +107,7 @@ class Compras extends Component
             $compra->update([
                 'fecha_compra' => $this->fecha_compra,
                 'fecha_entrega' => $this->fecha_entrega,
-                'importe' => $this->importe,
+                //'importe' => $this->importe,
                 'num_factura' => $this->num_factura,
                 'num_vale_ingreso' => $this->num_vale_ingreso,
                 'proveedor_id' => $this->proveedor_id,
@@ -144,19 +144,20 @@ class Compras extends Component
             session()->flash('error', 'Tenemos problemas de servidor!!');
         }
     }
-    public function storeDetalleCompra()
+    public function storeDetalleCompra($id)
     {
         $this->validate([
-            'compras_id' => 'required',
+            //'compras_id' => 'required',
             'insumo_id' => 'required',
-            'observacion_insumo' => 'required',
+            'importe' => 'required',
             'cantidad' => 'required',
         ]);
         DetalleCompra::create([
-                'compras_id' => $this->compras_id,
+                'compras_id' => $id,
                 'insumo_id' => $this->insumo_id,
                 'observacion_insumo' => $this->observacion_insumo,
-                'cantidad' => $this->cantidad
+                'cantidad' => $this->cantidad,
+                'importe' => $this->importe
             ]);
         try {
 
