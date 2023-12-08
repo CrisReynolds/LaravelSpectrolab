@@ -1,14 +1,14 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <b class="mb-2 text-sm font-medium text-gray-900">Fecha compra:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $objCompra->fecha_compra->format('Y-m-d') }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->fecha_compra->format('Y-m-d') }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">Fecha entrega:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $objCompra->fecha_entrega->format('Y-m-d') }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->fecha_entrega->format('Y-m-d') }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">No Factura:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $objCompra->num_factura }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->num_factura }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">No vale ingreso:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $objCompra->num_vale_ingreso }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->num_vale_ingreso }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">Proveedor:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $objCompra->proveedor->nombre }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->proveedor->nombre }}</span><br>
     <div>
         <h3>Detalle de Consumo</h3>
     </div>
@@ -42,7 +42,7 @@
             </th>
         </thead>
         <tbody>
-            @foreach ($objDetalleCompra as $compra)
+            @foreach ($detalles as $compra)
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

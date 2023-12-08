@@ -15,10 +15,6 @@ class Compras extends Component
 {
     use WithPagination;
     public $fecha_compra, $fecha_entrega, $num_factura, $num_vale_ingreso, $compraId, $proveedor_id, $usuario_id;
-    /* Objetos */
-    public $objCompra, $objDetalleCompra, $objInsumos;
-    /* Detalle compra */
-    public $compras_id, $insumo_id, $observacion_insumo, $cantidad, $importe;
 
     protected $rules = [
         'fecha_compra' => 'required|date',
@@ -41,7 +37,7 @@ class Compras extends Component
         ]);
     }
 
-    public $isOpen = 0, $compraSec = true;
+    public $isOpen = 0;
 
     public function create()
     {
@@ -119,56 +115,5 @@ class Compras extends Component
         }
     }
 
-    /* public function detalle($id)
-    {
-        $compra = Compra::findOrFail($id);
-        $detalles = DetalleCompra::where('compras_id', $id)->get();
 
-        return view('compras.detalle-compras', compact('compra', 'detalles',));
-    } */
-    public function detalleCompra($id)
-    {
-        $this->compraSec = false;
-        try {
-            $miCompra = Compra::findOrFail($id);
-            $detalles = DetalleCompra::where('compras_id', $id)->get();
-            $insumos = Insumo::orderBy('detalle')->get();
-            if (!$miCompra) {
-                session()->flash('error', 'No existe Compra');
-            } else {
-                $this->objCompra = $miCompra;
-                $this->objDetalleCompra = $detalles;
-                $this->objInsumos = $insumos;
-            }
-        } catch (\Exception $ex) {
-            session()->flash('error', 'Tenemos problemas de servidor!!');
-        }
-    }
-    public function storeDetalleCompra($id)
-    {
-        $this->validate([
-            //'compras_id' => 'required',
-            'insumo_id' => 'required',
-            'importe' => 'required',
-            'cantidad' => 'required',
-        ]);
-        DetalleCompra::create([
-                'compras_id' => $id,
-                'insumo_id' => $this->insumo_id,
-                'observacion_insumo' => $this->observacion_insumo,
-                'cantidad' => $this->cantidad,
-                'importe' => $this->importe
-            ]);
-        try {
-
-            //$this->resetFields();
-        } catch (\Exception $ex) {
-            session()->flash('error', 'Something goes wrong!!');
-        }
-    }
-    public function deleteDetalleCompra($id)
-    {
-        DetalleCompra::find($id)->delete();
-        //session()->flash('message', 'Post Deleted Successfully.');
-    }
 }
