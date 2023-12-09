@@ -22,9 +22,8 @@
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" wire:click="create">Agregar Proveedor</button>
             </div>
             @if($isOpen)
-    
-            <div class=" flex overflow-auto relative left-0 right-0 inset-0 items-center justify-center z-50 ">
-                <div class=" fixed inset-0 bg-black opacity-50"></div>
+            <div class="fixed inset-0 flex items-center justify-center z-50">
+                <div class=" absolute inset-0 bg-black opacity-50"></div>
                 <div class=" relative bg-gray-200 p-8 rounded shadow-lg w-1/2">
                     <!-- Modal content goes here -->
                     <svg wire:click.prevent="$set('isOpen', false)"
@@ -33,16 +32,18 @@
                     </svg>
                 <h2 class="text-2xl font-bold mb-4">{{ $ProveedorId ? 'Editar Proveedor' : 'Crear Proveedor' }}</h2>
                 <form wire:submit.prevent="{{ $ProveedorId ? 'update' : 'store' }}">
-                        <div class="mb-4">
-                            <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre del Proveedor:</label>
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                        <div class="relative z-0 w-full group">
+                            <label for="nombre" class="block text-gray-700 font-bold mb-2">
+                                <span class="text-red-600">*</span>Nombre del Proveedor:</label>
                             <input type="text" wire:model="nombre" id="nombre" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            
                             @error('nombre')
                             <div class="mb-4">
                                 <small class="text-red-600">{{$message}}</small>
                             </div>
                             @enderror
-                            
+                        </div>  
+                        <div class="relative z-0 w-full group">      
                             <label for="ciudad" class="block text-gray-700 font-bold mb-2">Ciudad:</label>
                             <select wire:model="ciudad" id="ciudad" class="w-full border border-gray-300 px-4 py-2 rounded">
                                 <option value="">Selecciona una ciudad</option>
@@ -58,43 +59,69 @@
                                 <!-- Campo de entrada de texto para la opción personalizada -->
                                 <input type="text" wire:model="ciudad" placeholder="Otra ciudad" class="w-full border border-gray-300 px-4 py-2 rounded">
                             </select>
-                            <label for="correo" class="block text-gray-700 font-bold mb-2">Correo:</label>
-                            <input type="email" wire:model="correo" id="correo" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="direccion" class="block text-gray-700 font-bold mb-2">Direccion:</label>
-                            <input type="text" wire:model="direccion" id="direccion" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="telefono" class="block text-gray-700 font-bold mb-2">Telefono:</label>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                        <div class="relative z-0 w-full group">
+                            <label for="correo" class=" text-gray-700 font-bold ">Correo:</label>
+                            <input type="email" wire:model="correo" id="correo" 
+                            class="w-full border border-gray-300 px-4 py-2 rounded">
+                        </div>  
+                        <div class="relative z-0 w-full group">
+                            <label for="direccion" class=" text-gray-700 font-bold mb-2">Direccion:</label>
+                            <input type="text" wire:model="direccion" id="direccion" 
+                            class="w-full border border-gray-300 px-4 py-2 rounded">
+                        </div>
+                    </div>  
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                        <div class="relative z-0 w-full group">
+                            <label for="telefono" class="block text-gray-700 font-bold ">Telefono:</label>
                             <input type="text" wire:model="telefono" id="telefono" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="fax" class="block text-gray-700 font-bold mb-2">Fax:</label>
+                        </div>
+                        <div class="relative z-0 w-full group">
+                            <label for="fax" class="block text-gray-700 font-bold ">Fax:</label>
                             <input type="text" wire:model="fax" id="fax" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="nit" class="block text-gray-700 font-bold mb-2">NIT:</label>
+                        </div>
+                    </div> 
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                        <div class="relative z-0 w-full group">
+                            <label for="nit" class="block text-gray-700 font-bold ">
+                                <span class="text-red-600">*</span>NIT:</label>
                             <input type="number" wire:model="nit" id="nit" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            
+                        </div>
                             @error('nit')
                             <div class="mb-4">
                                 <small class="text-red-600">{{'El NIT debe ser un numero de 10 digitos'}}</small>
                             </div>
                             @enderror
-
-                            <label for="persona_contacto" class="block text-gray-700 font-bold mb-2">Persona de contacto:</label>
+                        <div class="relative z-0 w-full group">
+                            <label for="persona_contacto" class="block text-gray-700 font-bold ">Persona de contacto:</label>
                             <input type="text" wire:model="persona_contacto" id="persona_contacto" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="productos" class="block text-gray-700 font-bold mb-2">Productos:</label>
-                            <textarea name="productos" wire:model="productos" id="productos" cols="30" rows="5"></textarea>
-
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                        <div class="relative z-0 w-full group">
+                            <label for="productos" class="block text-gray-700 font-bold mb-2">
+                                <span class="text-red-600">*</span>Productos:</label>
+                            <textarea name="productos" wire:model="productos" id="productos" cols="36" rows="4"></textarea>
+                        </div>
                             @error('productos')
                             <div class="mb-4">
                                 <small class="text-red-600">{{$message}}</small>
                             </div>
                             @enderror
-
+                        <div class="relative z-0 w-full group">
                             <label for="representante" class="block text-gray-700 font-bold mb-2">Representante:</label>
-                            <textarea name="representante" wire:model="representante" id="representante" cols="30" rows="5"></textarea>
+                            <textarea name="representante" wire:model="representante" id="representante" cols="36" rows="4"></textarea>
                         </div>
+                    </div>
 
                         <div class="flex justify-end">
                             <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">Guardar</button>
                             <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" wire:click="closeModal">Cancelar</button>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         

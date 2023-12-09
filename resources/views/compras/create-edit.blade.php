@@ -13,8 +13,8 @@
         <form wire:submit.prevent="{{ $compraId ? 'update' : 'store' }}">
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full group">
-                    <label for="fecha_compra" class="block text-gray-700 font-bold mb-2">Fecha de
-                        compra:<span class="text-red-600">*</span></label>
+                    <label for="fecha_compra" class="block text-gray-700 font-bold mb-2">
+                        <span class="text-red-600">*</span>Fecha de compra:</label>
                     <input type="date" wire:model="fecha_compra" id="fecha_compra"
                         class="w-full border border-gray-300 px-4 py-2 rounded">
                     @error('fecha_compra')
@@ -32,8 +32,8 @@
             </div>
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full group">
-                    <label for="num_factura" class="block text-gray-700 font-bold mb-2">Número de
-                    factura:<span class="text-red-600">*</span></label>
+                    <label for="num_factura" class="block text-gray-700 font-bold mb-2"><span class="text-red-600">*</span>
+                    Número de factura:</label>
                     <input type="number" wire:model="num_factura" id="num_factura"
                     class="w-full border border-gray-300 px-4 py-2 rounded">
                     @error('num_factura')
@@ -43,8 +43,8 @@
                     @enderror
                 </div>
                 <div class="relative z-0 w-full group">
-                    <label for="num_vale_ingreso" class="block text-gray-700 font-bold mb-2">No. de vale
-                        de ingreso:<span class="text-red-600">*</span></label>
+                    <label for="num_vale_ingreso" class="block text-gray-700 font-bold mb-2"><span class="text-red-600">*</span>
+                        No. de vale de ingreso:</label>
                     <input type="text" wire:model="num_vale_ingreso" id="num_vale_ingreso" placeholder="1/2023"
                         class="w-full border border-gray-300 px-4 py-2 rounded">
                     @error('num_vale_ingreso')
@@ -56,7 +56,8 @@
             </div>
             <div class="mb-4">
 
-                <label for="proveedor_id" class="block text-gray-700 font-bold mb-2">Proveedor:<span class="text-red-600">*</span></label>
+                <label for="proveedor_id" class="block text-gray-700 font-bold mb-2">
+                    <span class="text-red-600">*</span>Proveedor:</label>
                 <select wire:model="proveedor_id" id="proveedor_id"
                     class="w-full border border-gray-300 px-4 py-2 rounded">
                     <option value="">Selecciona un proveedor</option>

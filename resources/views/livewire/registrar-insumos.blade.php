@@ -46,22 +46,30 @@
                         </svg>
                         <h2 class="text-2xl font-bold mb-4">{{ $insumoId ? 'Editar Artículo' : 'Crear Artículo' }}</h2>
                         <form wire:submit.prevent="{{ $insumoId ? 'update' : 'store' }}" autocomplete="off">
-                            <div class="mb-4">
-                                <label for="detalle" class="block text-gray-700 font-bold mb-2">Nombre del
-                                    artículo:</label>
+                            <div class="mb-1">
+                                <label for="detalle" class="block text-gray-700 font-bold">
+                                    <span class="text-red-600">*</span>Nombre del artículo:
+                                </label>
                                 <input type="text" wire:model="detalle" id="detalle"
-                                    class=" w-full mb-2 border border-gray-300 px-4 py-2 rounded">
+                                    class=" w-full border border-gray-300 px-4 py-2 rounded">
+                            </div>
                                 @error('detalle')
-                                    <div class="mb-4">
+                                    <div class="mb-2">
                                         <small class="text-red-600">{{ 'El campo es requerido' }}</small>
                                     </div>
                                 @enderror
-                                <label for="codigo" class="w-20 text-gray-700 font-bold mb-2">Código:</label>
-                                <input type="text" wire:model="codigo" id="codigo"
-                                    class="w-5/6 mb-2 border border-gray-300 px-4 py-2 rounded">
-                                <label for="marca" class="w-20 text-gray-700 font-bold mb-2 ">Marca:</label>
-                                <input type="text" wire:model="marca" id="marca"
-                                    class=" w-72 mb-2 border border-gray-300 px-4 py-2 rounded">
+                            <div class="grid md:grid-cols-2 md:gap-6">
+                                <div class="relative z-0 w-full group">
+                                    <label for="codigo" class=" text-gray-700 font-bold mb-2">Código:</label>
+                                    <input type="text" wire:model="codigo" id="codigo"
+                                        class=" w-full mb-2 border border-gray-300 px-4 py-2 rounded">
+                                </div>
+                                <div class="relative z-0 w-full group">
+                                    <label for="marca" class=" text-gray-700 font-bold mb-2 ">Marca:</label>
+                                    <input type="text" wire:model="marca" id="marca"
+                                            class=" w-full mb-2 border border-gray-300 px-4 py-2 rounded">
+                                </div>
+                            </div>
                                 {{-- <label for="precio" class="w-20 text-gray-700 font-bold mb-2">Precio:</label>
                             <input type="number" step="0.01" wire:model="precio" id="precio" class=" w-1/3 mb-2 border border-gray-300 px-4 py-2 rounded">
                                 @error('precio')
@@ -69,44 +77,73 @@
                                         <small class="text-red-600">{{'El precio es requerido'}}</small>
                                     </div>
                                 @enderror --}}
-                                <label for="unidad_id" class="w-20 text-gray-700 font-bold mb-2">Unidad:</label>
-                                <select wire:model="unidad_id" id="unidad_id"
-                                    class="w-72 border border-gray-300 px-4 py-2 rounded">
-                                    <option value="">Selecciona una unidad</option>
-                                    @foreach ($unidades as $unidad)
-                                        <option value="{{ $unidad->id }}">{{ $unidad->unidad_ref }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="stock_minimo" class=" w-28 text-gray-700 font-bold mb-2 ">Cantidad
-                                    mínima:</label>
-                                <input type="number" wire:model="stock_minimo" id="stock_minimo"
-                                    class=" w-28 border mb-2 border-gray-300 px-4 py-2 rounde">
-                                <label for="categoria_id" class="w-20 text-gray-700 font-bold mb-2">Categoria:</label>
-                                <select wire:model="categoria_id" id="categoria_id"
-                                    class="w-72 mb-2 border border-gray-300 px-4 py-2 rounded">
-                                    <option value="">Selecciona una Categoría</option>
-                                    @foreach ($categorias as $categoria)
-                                        <option value="{{ $categoria->id }}">{{ $categoria->cat_ref }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="es_narcotico" class="w-20 text-gray-700 font-bold mb-2">Narcotico:</label>
-                                <input type="checkbox" wire:model="es_narcotico" id="es_narcotico" value="1"
-                                    class=" h-9 w-9 border mb-2 border-gray-300 px-4 py-2 rounded-md ">
-                                <br>
-                                <label for="proveedor_id" class="w-20 text-gray-700 font-bold mb-2">Proveedor:</label>
-                                <select wire:model="proveedor_id" id="proveedor_id"
-                                    class="w-2/3 border border-gray-300 px-4 py-2 rounded">
-                                    <option value="">Selecciona una Proveedor</option>
-                                    @foreach ($proveedores as $proveedor)
-                                        <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-                                    @endforeach
-                                </select>
-                                @error('proveedor_id')
-                                    <div class="mb-4">
-                                        <small class="text-red-600">{{ 'El proveedor es requerido' }}</small>
-                                    </div>
-                                @enderror
+                            <div class="grid md:grid-cols-2 md:gap-6">
+                                <div class="relative z-0 w-full group">
+                                    <label for="unidad_id" class=" text-gray-700 font-bold mb-2">
+                                        <span class="text-red-600">*</span>Unidad:
+                                    </label>
+                                    <select wire:model="unidad_id" id="unidad_id"
+                                        class=" w-full border border-gray-300 px-4 py-2 rounded">
+                                        <option value="">Selecciona una unidad</option>
+                                        @foreach ($unidades as $unidad)
+                                            <option value="{{ $unidad->id }}">{{ $unidad->unidad_ref }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('unidad_id')
+                                        <div class="mb-4">
+                                            <small class="text-red-600">{{ 'La unidad es requerida' }}</small>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="relative z-0 w-full group">
+                                    <label for="stock_minimo" class=" block text-gray-700 font-bold ">Cantidad
+                                        mínima:</label>
+                                    <input type="number" wire:model="stock_minimo" id="stock_minimo"
+                                        class=" w-full border mb-2 border-gray-300 px-4 py-2 rounde">
+                                </div>
                             </div>
+                            <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                                <div class="relative z-0 w-full group">
+                                    <label for="categoria_id" class=" text-gray-700 font-bold ">
+                                        <span class="text-red-600">*</span>Categoria:
+                                    </label>
+                                    <select wire:model="categoria_id" id="categoria_id"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded">
+                                        <option value="">Selecciona una Categoría</option>
+                                        @foreach ($categorias as $categoria)
+                                            <option value="{{ $categoria->id }}">{{ $categoria->cat_ref }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('categoria_id')
+                                        <div class="mb-2">
+                                            <small class="text-red-600">{{ 'La categoria es requerida' }}</small>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="relative z-0 w-full group">
+                                    <label for="proveedor_id" class=" text-gray-700 font-bold mb-2">
+                                        <span class="text-red-600">*</span>Proveedor:
+                                    </label>
+                                    <select wire:model="proveedor_id" id="proveedor_id"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded">
+                                        <option value="">Selecciona una Proveedor</option>
+                                        @foreach ($proveedores as $proveedor)
+                                            <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('proveedor_id')
+                                        <div class="mb-4">
+                                            <small class="text-red-600">{{ 'El proveedor es requerido' }}</small>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                                <label for="es_narcotico" class=" w-32 text-gray-700 font-bold mb-2">
+                                    Narcotico:
+                                </label>
+                                <input type="checkbox" wire:model="es_narcotico" id="es_narcotico" value="1"
+                                        class=" h-9 w-9 border mb-2 border-gray-300 px-4 py-2 rounded-md ">
+                            
 
                             <div class="flex justify-end">
 

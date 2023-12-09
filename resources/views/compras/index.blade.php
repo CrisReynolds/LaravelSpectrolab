@@ -40,10 +40,10 @@
                                 {{ $compra->id }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $compra->fecha_compra->format('Y-m-d') }}
+                                {{ $compra->fecha_compra->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $compra->fecha_entrega->format('Y-m-d') }}
+                                {{ $compra->fecha_entrega->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $compra->importe }}
