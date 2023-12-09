@@ -27,8 +27,8 @@ class DetalleCompras extends Component
         $this->validate([
             //'compras_id' => 'required',
             'insumo_id' => 'required',
-            'importe' => 'required',
-            'cantidad' => 'required',
+            'importe' => 'required|numeric|regex:/^[\d]{0,11}(\.[\d]{1,2})?$/',
+            'cantidad' => 'required|numeric|regex:/^[\d]{0,11}(\.[\d]{1,2})?$/',
         ]);
         DetalleCompra::create([
             'compras_id' => $id,

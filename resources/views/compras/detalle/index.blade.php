@@ -64,7 +64,7 @@
                         {{ $compra->importe }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $compra->importe / $compra->cantidad }}
+                        {{ round($compra->importe / $compra->cantidad, 2) }}
                     </td>
                     <td class="flex items-center px-6 py-4 space-x-3">
                         <button

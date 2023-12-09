@@ -12,9 +12,6 @@
                             Fecha de entrega
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Importe
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Número de factura
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -44,9 +41,6 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $compra->fecha_entrega->format('Y-m-d') }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $compra->importe }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $compra->num_factura }}
