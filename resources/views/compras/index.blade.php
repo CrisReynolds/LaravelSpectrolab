@@ -12,9 +12,6 @@
                             Fecha de entrega
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Importe
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Número de factura
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -46,9 +43,6 @@
                                 {{ $compra->fecha_entrega->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $compra->importe }}
-                            </td>
-                            <td class="px-6 py-4">
                                 {{ $compra->num_factura }}
                             </td>
                             <td class="px-6 py-4">
@@ -71,8 +65,8 @@
                                 {{-- <a href="" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center"> <i class="fa-solid fa-trash"></i></a> --}}
                             </td>
                             <td>
-                                <button type="button" wire:click="detalleCompra({{$compra->id}})" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">Ver
-                                    detalle</button>
+                                <a href="{{route('compras.detalle',$compra->id)}}" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">Ver
+                                    detalle</a>
                             </td>
                         </tr>
                     @endforeach

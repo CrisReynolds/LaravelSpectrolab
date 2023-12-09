@@ -1,21 +1,23 @@
-<form wire:submit.prevent="storeDetalleCompra({{$objCompra->id}})" class="grid md:grid-cols-5 md:gap-6" autocomplete="off">
+<form wire:submit.prevent="storeDetalleCompra({{$compra->id}})" class="grid md:grid-cols-5 md:gap-6" autocomplete="off">
     <div>
         <label for="insumo_id" class="block mb-2 text-sm font-medium text-gray-900">--Seleccione un insumo<span
-                class="text-red-600">*</label>
+                class="text-red-600">*</span><a href="{{url('/inventario')}}"> +</a></label>
         <select wire:model="insumo_id" id="insumo_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">>
             <option value="">---Seleccione Insumo--</option>
-            @foreach ($objInsumos as $insumo)
+            @foreach ($insumos as $insumo)
                 <option value="{{ $insumo->id }}">{{ $insumo->detalle }}</option>
             @endforeach
         </select>
+
         @error('insumo_id')
             <small>{{ $message }}</small>
         @enderror
     </div>
+
     <div>
         <label for="cantidad" class="block mb-2 text-sm font-medium text-gray-900">Cantidad <span
                 class="text-red-600">*</span></label>
-        <input type="number" wire:model="cantidad" id="cantidad"
+        <input type="text" wire:model="cantidad" id="cantidad"
             class="dark:text-white block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
         @error('cantidad')
             <small>{{ $message }}</small>
