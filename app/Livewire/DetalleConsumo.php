@@ -24,7 +24,7 @@ class DetalleConsumo extends Component
             $this->btnSubmit = 0;
 
         }else{
-            if($this->cantidad < $stock){
+            if($this->cantidad <= $stock){
                 session()->flash('verifyOk', 'Correcto');
                 $this->btnSubmit = 1;
                 //$this->btnVerify = 0;
