@@ -11,6 +11,7 @@ class Unidades extends Component
 {
     use WithPagination;
 
+    public string $search = '';
     public $unidad_ref,$unidadId;
 
     protected $rules = [
@@ -18,15 +19,21 @@ class Unidades extends Component
         // otras reglas de validación...
     ];
 
-    protected $listeners = [
-        'deleteUnidadListner'=>'deleteUnidad'
-    ];
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     
     public function render()
     {
+        $unidades = Unidad::where('unidad_ref', 'like', "%$this->search%")->paginate(8);
         return view('livewire.unidades',[
-            'unidades' => Unidad::paginate(10),
+            'unidades' => $unidades,
         ]);
+    }
+
+    public function busqueda(){
+        $this->resetPage();
     }
 
     public $isOpen = 0;

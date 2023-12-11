@@ -17,7 +17,7 @@ class Consumos extends Component
         'fecha_consumo' => 'required|date',
         'num_vale_salida' => 'required|string',
         'solicitante_id' => 'required',
-        'usuario_id' => 'required',
+        // 'usuario_id' => 'required',
         
         // otras reglas de validación...
     ];
@@ -35,7 +35,7 @@ class Consumos extends Component
 
     public function create()
     {
-        $this->reset('consumoId','fecha_consumo','usuario_id','solicitante_id','num_vale_salida','observaciones','parametro','descripcion');
+        $this->reset('consumoId','fecha_consumo','solicitante_id','num_vale_salida','observaciones','parametro','descripcion');
         $this->openModal();
     }
     public function openModal()
@@ -53,7 +53,7 @@ class Consumos extends Component
         Consumo::create([
             'consumoId' => $this->consumoId,
             'fecha_consumo' => $this->fecha_consumo,
-            'usuario_id' => $this->usuario_id,
+            'usuario_id' => auth()->user()->id,
             'solicitante_id' => $this->solicitante_id,
             'num_vale_salida' => $this->num_vale_salida,
             'observaciones' => $this->observaciones,

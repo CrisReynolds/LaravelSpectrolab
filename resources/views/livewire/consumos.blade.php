@@ -32,28 +32,46 @@
             </svg>
             <h2 class="text-2xl font-bold mb-4">{{ $consumoId ? 'Editar Consumo' : 'Regisrar Consumo' }}</h2>
             <form wire:submit.prevent="{{ $consumoId ? 'update' : 'store' }}">
-                        <div class="mb-4">
-                            <label for="fecha_consumo" class="block text-gray-700 font-bold mb-2">Fecha Consumo:</label>
-                            <input type="date" wire:model="fecha_consumo" id="fecha_consumo" class="w-full border border-gray-300 px-4 py-2 rounded">
+                <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                    <div class="relative z-0 w-full group">
+                        <label for="fecha_consumo" class="block text-gray-700 font-bold mb-2">
+                            <span class="text-red-600">*</span>Fecha Consumo:</label>
+                        <input type="date" wire:model="fecha_consumo" id="fecha_consumo" class="w-full border border-gray-300 px-4 py-2 rounded">
                             @error('fecha_consumo')
                             <div class="mb-4">
                                 <small class="text-red-600">{{'El dato es requerido'}}</small>
                             </div>
                             @enderror
-                            <label for="num_vale_salida" class="block text-gray-700 font-bold mb-2">Número de vale de salida:</label>
-                            <input type="number" wire:model="num_vale_salida" id="num_vale_salida" class="w-full border border-gray-300 px-4 py-2 rounded">
+                    </div>
+                    <div class="relative z-0 w-full group">
+                        <label for="num_vale_salida" class="block text-gray-700 font-bold mb-2">
+                            <span class="text-red-600">*</span>Número de vale de salida:</label>
+                        <input type="number" wire:model="num_vale_salida" id="num_vale_salida" class="w-full border border-gray-300 px-4 py-2 rounded">
                             @error('num_vale_salida')
                             <div class="mb-4">
                                 <small class="text-red-600">{{'El dato es requerido'}}</small>
                             </div>
                             @enderror
-                            <label for="observaciones" class="block text-gray-700 font-bold mb-2">Observaciones:</label>
-                            <input type="text" wire:model="observaciones" id="observaciones" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="parametro" class="block text-gray-700 font-bold mb-2">Parámetro:</label>
-                            <input type="text" wire:model="parametro" id="parametro" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="descripcion" class="block text-gray-700 font-bold mb-2">Descripcion:</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                    <div class="relative z-0 w-full group">
+                        <label for="observaciones" class="block text-gray-700 font-bold mb-2">Observaciones:</label>
+                        <input type="text" wire:model="observaciones" id="observaciones" class="w-full border border-gray-300 px-4 py-2 rounded">
+                    </div>
+                    <div class="relative z-0 w-full group">
+                        <label for="parametro" class="block text-gray-700 font-bold mb-2">Parámetro:</label>
+                        <input type="text" wire:model="parametro" id="parametro" class="w-full border border-gray-300 px-4 py-2 rounded">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6 mb-2">
+                    <div class="relative z-0 w-full group">
+                        <label for="descripcion" class="block text-gray-700 font-bold mb-2">Descripcion:</label>
                             <input type="text" wire:model="descripcion" id="descripcion" class="w-full border border-gray-300 px-4 py-2 rounded">
-                            <label for="solicitante_id" class="block text-gray-700 font-bold mb-2">Solicitante:</label>
+                    </div>
+                    <div class="relative z-0 w-full group">
+                        <label for="solicitante_id" class="block text-gray-700 font-bold mb-2">
+                            <span class="text-red-600">*</span>Solicitante:</label>
                             <select wire:model="solicitante_id" id="solicitante_id" class="w-full border border-gray-300 px-4 py-2 rounded">
                                 <option value="">Selecciona un solicitante</option>
                                     @foreach ($solicitantes as $solicitante)
@@ -65,19 +83,21 @@
                                 <small class="text-red-600">{{'El dato es requerido'}}</small>
                             </div>
                             @enderror
-                                <label for="usuario_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
+                    </div>
+                </div>
+                                {{-- <label for="usuario_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
                                 <select wire:model="usuario_id" id="usuario_id" class="w-full border border-gray-300 px-4 py-2 rounded">
                                 <option value="">Selecciona un usuario</option>
                                     @foreach ($usuarios as $usuario)
                                     <option value="{{$usuario->id}}">{{$usuario->name}}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                                 @error('usuario_id')
                             <div class="mb-4">
                                 <small class="text-red-600">{{'El dato es requerido'}}</small>
                             </div>
                             @enderror
-                        </div>
+                        
                         <div class="flex justify-end">
 
                             <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">Guardar</button>
@@ -129,7 +149,7 @@
                             {{ $consumo->id }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $consumo->fecha_consumo }}
+                            {{ $consumo->fecha_consumo->format('d-m-Y') }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $consumo->num_vale_salida }}
