@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Exports\ExportCompras;
 use App\Models\Compra;
 use App\Models\Proveedor;
 use App\Models\User;
@@ -9,6 +10,7 @@ use App\Models\DetalleCompra;
 use App\Models\Insumo;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 use Psy\Readline\Hoa\Console;
 
 class Compras extends Component
@@ -113,6 +115,10 @@ class Compras extends Component
             $this->closeModal();
             $this->reset('fecha_compra', 'fecha_entrega', 'importe', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
         }
+    }
+    /* Export  */
+    public function export(){
+        return Excel::download(new ExportCompras, 'compras.xlsx');
     }
 
 

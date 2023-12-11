@@ -23,20 +23,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("gestion_usuarios",[UsuariosController::class,"index"])->name("vista_usuarios");
+Route::get("gestion_usuarios", [UsuariosController::class, "index"])->name("vista_usuarios");
 Route::get('/inventario', function () {
-    return view('insumos.registro_insumos');})->name('vista_insumos');
+    return view('insumos.registro_insumos');
+})->name('vista_insumos');
 Route::get('/unidades', function () {
-    return view('unidades.ver-unidades');})->name('vista_unidades');
+    return view('unidades.ver-unidades');
+})->name('vista_unidades');
 Route::get('/solicitantes', function () {
-    return view('solicitantes.ver-solicitantes');})->name('vista_solicitantes');
+    return view('solicitantes.ver-solicitantes');
+})->name('vista_solicitantes');
 Route::get('/proveedores', function () {
-    return view('proveedores.ver-proveedores');})->name('vista_proveedores');
+    return view('proveedores.ver-proveedores');
+})->name('vista_proveedores');
 Route::get('/consumos', function () {
-    return view('consumos.ver-consumos');})->name('vista_consumos');
+    return view('consumos.ver-consumos');
+})->name('vista_consumos');
 Route::get('/compras', function () {
-    return view('compras.ver-compras');})->name('vista_compras');
-Route::get('/compras/{id}/detalle', [DetalleCompras::class,'index'])->name('compras.detalle');
+    return view('compras.ver-compras');
+})->name('vista_compras');
+Route::get('/compras/{id}/detalle', [DetalleCompras::class, 'index'])->name('compras.detalle');
+Route::get('/export', [Compras::class, 'export'])->name('compras.export');
+
 Route::get('/consumos/{id}/detalle', [DetalleConsumo::class, 'index'])->name('consumo.detalle');
 // Route::delete("inventario/{insumo}",[InsumosController::class,"confirmarInsumoEliminacion"])->name("eliminar_insumo");
 Route::delete("inventario/{insumo}", [InsumosController::class, 'desttoy'])->name('eliminar-insumo');
@@ -50,4 +58,3 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
