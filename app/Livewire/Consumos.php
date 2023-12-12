@@ -2,26 +2,30 @@
 
 namespace App\Livewire;
 
+use App\Exports\ExportConsumo;
 use App\Models\Consumo;
 use App\Models\User;
 use App\Models\Solicitante;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Consumos extends Component
 {
     use WithPagination;
     public $fecha_consumo,$consumoId,$usuario_id,$solicitante_id,$num_vale_salida,$observaciones,$parametro,$descripcion;
+    /* Filtro */
+    public $start_date, $end_date;
 
     protected $rules = [
         'fecha_consumo' => 'required|date',
         'num_vale_salida' => 'required|string',
         'solicitante_id' => 'required',
         // 'usuario_id' => 'required',
-        
+
         // otras reglas de validación...
     ];
-    
+
     public function render()
     {
         return view('livewire.consumos',[
@@ -61,7 +65,7 @@ class Consumos extends Component
             'descripcion' => $this->descripcion,
         ]);
         session()->flash('success', 'Consumo registrado correctamente.');
-        
+
         $this->reset('fecha_consumo','usuario_id','solicitante_id','num_vale_salida','observaciones','parametro','descripcion','consumoId');
         $this->closeModal();
     }
@@ -110,6 +114,10 @@ class Consumos extends Component
         }
     }
 
-    
+    /* Export  */
+    public function export()
+    {
+        return Excel::download(new ExportConsumo($this->start_date, $this->end_date),  'consumos.xlsx');
+    }
 }
 

@@ -17,6 +17,8 @@ class Compras extends Component
 {
     use WithPagination;
     public $fecha_compra, $fecha_entrega, $num_factura, $num_vale_ingreso, $compraId, $proveedor_id, $usuario_id;
+    /* Filtro */
+    public $start_date, $end_date;
 
     protected $rules = [
         'fecha_compra' => 'required|date',
@@ -118,8 +120,6 @@ class Compras extends Component
     }
     /* Export  */
     public function export(){
-        return Excel::download(new ExportCompras, 'compras.xlsx');
+        return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras.xlsx');
     }
-
-
 }

@@ -116,7 +116,7 @@ class DetalleConsumo extends Component
     public function storeDetalleConsumo($id)
     {
         $this->validate();
-        $detalleConsumo = ModelsDetalleConsumo::where('insumo_id', $this->insumo_id)->first();
+        $detalleConsumo = ModelsDetalleConsumo::where('insumo_id', $this->insumo_id)->where('consumos_id', $id)->first();
         if ($detalleConsumo) {
             $detalleConsumo->update([
                 'cantidad' => $this->cantidad,

@@ -30,7 +30,7 @@ class DetalleCompras extends Component
             'importe' => 'required|numeric|regex:/^[\d]{0,11}(\.[\d]{1,2})?$/',
             'cantidad' => 'required|numeric|regex:/^[\d]{0,11}(\.[\d]{1,2})?$/',
         ]);
-        $detalleCompra = DetalleCompra::where('insumo_id', $this->insumo_id)->first();
+        $detalleCompra = DetalleCompra::where('insumo_id', $this->insumo_id)->where('compras_id',$id)->first();
         if($detalleCompra){
             $detalleCompra->update([
                 'observacion_insumo' => $this->observacion_insumo,
