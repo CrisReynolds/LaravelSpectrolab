@@ -6,6 +6,8 @@ use App\Livewire\DetalleCompras;
 use App\Livewire\Compras;
 use App\Livewire\DetalleConsumo;
 use App\Livewire\RegistrarInsumos;
+use App\Livewire\ReporteCompra;
+use App\Livewire\ReporteConsumo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +48,8 @@ Route::get('/compras', function () {
     return view('compras.ver-compras');
 })->name('vista_compras');
 Route::get('/compras/{id}/detalle', [DetalleCompras::class, 'index'])->name('compras.detalle');
+Route::get('/compras/reporte', [ReporteCompra::class, 'render'])->name('compras.reporte');
+Route::get('/consumo/reporte', [ReporteConsumo::class, 'index'])->name('consumo.reporte');
 Route::get('/export', [Compras::class, 'export'])->name('compras.export');
 
 Route::get('/consumos/{id}/detalle', [DetalleConsumo::class, 'index'])->name('consumo.detalle');
