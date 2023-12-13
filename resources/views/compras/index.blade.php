@@ -21,7 +21,7 @@
                             Proveedor
                         </th>
                         <th scope="col" class="px-6 py-3">
-
+                            Acciones
                         </th>
                         <th>
 
@@ -40,7 +40,9 @@
                                 {{ $compra->fecha_compra->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $compra->fecha_entrega->format('d-m-Y') }}
+                                @if ($compra->fecha_entrega)
+                                    {{ $compra->fecha_entrega->format('d-m-Y') }}
+                                @endif
                             </td>
                             <td class="px-6 py-4">
                                 {{ $compra->num_factura }}

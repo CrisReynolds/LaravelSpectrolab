@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class Proveedores extends Component
 {
     use WithPagination;
+    public string $search = '';
     public $nombre,$ciudad,$correo,$direccion,$telefono,$fax,$nit,$persona_contacto,$productos,$representante,$ProveedorId;
 
     protected $rules = [
@@ -30,8 +31,17 @@ class Proveedores extends Component
     public function render()
     {
         return view('livewire.proveedores',[
-            'proveedores' => Proveedor::paginate(5),
+            'proveedores' => Proveedor::where('nombre', 'like', "%$this->search%")->paginate(5),
         ]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function busqueda(){
+        $this->resetPage();
     }
 
     public $isOpen = 0;

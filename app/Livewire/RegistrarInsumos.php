@@ -13,12 +13,13 @@ class RegistrarInsumos extends Component
 {
     use WithPagination;
 
+    public string $search = '';
     public $detalle,$insumoId,$unidad_id,$proveedor_id,$categoria_id,$precio,$marca,$stock_minimo,$es_narcotico=0,$codigo;
 
     public function render()
     {
         return view('livewire.registrar-insumos',[
-            'insumos' => Insumo::paginate(10),
+            'insumos' => Insumo::where('detalle', 'like', "%$this->search%")->paginate(10),
             'unidades' => Unidad::all(),
             'proveedores' => Proveedor::all(),
             'categorias' => Categoria::all(),
@@ -48,6 +49,15 @@ class RegistrarInsumos extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function busqueda(){
+        $this->resetPage();
     }
 
     public function store()

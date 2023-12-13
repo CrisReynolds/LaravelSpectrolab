@@ -9,14 +9,23 @@ use Livewire\WithPagination;
 class Solicitantes extends Component
 {
     public $solicitante_ref,$solicitanteId;
-
+    public string $search = '';
     use WithPagination;
 
     public function render()
     {
         return view('livewire.solicitantes',[
-            'solicitantes' => Solicitante::paginate(8),
+            'solicitantes' => Solicitante::where('solicitante_ref', 'like', "%$this->search%")->paginate(8),
         ]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function busqueda(){
+        $this->resetPage();
     }
 
     protected $rules = [

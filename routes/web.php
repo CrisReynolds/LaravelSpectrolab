@@ -30,6 +30,9 @@ Route::get('/inventario', function () {
 Route::get('/unidades', function () {
     return view('unidades.ver-unidades');
 })->name('vista_unidades');
+Route::get('/categorias', function () {
+    return view('categorias.ver-categorias');
+})->name('vista_categorias');
 Route::get('/solicitantes', function () {
     return view('solicitantes.ver-solicitantes');
 })->name('vista_solicitantes');

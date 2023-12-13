@@ -111,7 +111,7 @@
                 <a href="{{ route('dashboard') }}"
                     class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i
                         class="fas fa-laptop-code"></i> Principal</a>
-                <a href="{{route('vista_insumos')}}"
+                <a href="#"
                 class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i class="fa-solid fa-user-pen"></i>
                 Cuenta</a>
                 <a href="{{route('vista_insumos')}}"
@@ -132,6 +132,9 @@
                 <a href="{{ route('vista_solicitantes') }}"
                     class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i
                         class="fa-solid fa-user-group"></i> Ver Solicitantes</a>
+                <a href="{{ route('vista_categorias') }}"
+                    class="block rounded py-2 px-4 hover:bg-gray-500 hover:text-white"><i
+                        class="fa-solid fa-list"></i> Ver Categorias</a>
             </nav>
         </div>
         <!--contenido-->

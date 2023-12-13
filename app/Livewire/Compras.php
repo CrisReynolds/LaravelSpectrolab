@@ -22,7 +22,7 @@ class Compras extends Component
 
     protected $rules = [
         'fecha_compra' => 'required|date',
-        'fecha_entrega' => 'required|date',
+        //'fecha_entrega' => 'date',
         //'importe' => 'required|numeric',
         'num_factura' => 'required|integer',
         'num_vale_ingreso' => 'required|string',
@@ -71,7 +71,7 @@ class Compras extends Component
         ]);
         session()->flash('success', 'Compra registrada correctamente.');
 
-        $this->reset('fecha_compra', 'fecha_entrega', 'importe', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
+        $this->reset('fecha_compra', 'fecha_entrega', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
         $this->closeModal();
     }
 
@@ -111,11 +111,11 @@ class Compras extends Component
                 'num_factura' => $this->num_factura,
                 'num_vale_ingreso' => $this->num_vale_ingreso,
                 'proveedor_id' => $this->proveedor_id,
-                'usuario_id' => $this->usuario_id,
+                'usuario_id' => auth()->user()->id,
             ]);
             session()->flash('success', 'Compra actualizada correctamente.');
             $this->closeModal();
-            $this->reset('fecha_compra', 'fecha_entrega', 'importe', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
+            $this->reset('fecha_compra', 'fecha_entrega', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
         }
     }
     /* Export  */

@@ -20,6 +20,9 @@
             @endif
             <div class="my-4">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" wire:click="create">Agregar Proveedor</button>
+                <label for="">Buscar:</label>
+                <input type="text" wire:model="search" wire:keydown.enter="busqueda"
+                class="w-96 border border-gray-300 px-4 py-2 rounded" placeholder="Escribe el proveedor que quieras buscar">
             </div>
             @if($isOpen)
             <div class="fixed inset-0 flex items-center justify-center z-50">
@@ -166,7 +169,7 @@
                             Representante
                         </th> 
                         <th scope="col" class="px-6 py-3">
-                            
+                            Acciones
                         </th>        
                     </tr>
                 </thead>
