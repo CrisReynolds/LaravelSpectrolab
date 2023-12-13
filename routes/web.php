@@ -48,7 +48,7 @@ Route::get('/compras', function () {
     return view('compras.ver-compras');
 })->name('vista_compras');
 Route::get('/compras/{id}/detalle', [DetalleCompras::class, 'index'])->name('compras.detalle');
-Route::get('/compras/reporte', [ReporteCompra::class, 'render'])->name('compras.reporte');
+Route::get('/compras/reporte', [ReporteCompra::class, 'index'])->name('compras.reporte');
 Route::get('/consumo/reporte', [ReporteConsumo::class, 'index'])->name('consumo.reporte');
 Route::get('/export', [Compras::class, 'export'])->name('compras.export');
 

@@ -16,7 +16,7 @@ class ReporteCompra extends Component
 
     public function index()
     {
-        return view('livewire.reporte-compra');
+        return view('compras.reporte');
     }
     public function render()
     {
@@ -77,12 +77,22 @@ class ReporteCompra extends Component
     /* Export  */
     public function export()
     {
-        return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras.xlsx');
+        if ($this->start_date != "" && $this->end_date != ""){
+            return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras.xlsx');
+        }
+        else{
+            $now = now()->format('Y-m-d');
+            $startDate = Carbon::now();
+            $then = $startDate->firstOfMonth()->format('Y-m-d');
+            return Excel::download(new ExportCompras($then, $now),  'compras.xlsx');
+        }
+
     }
     public function consultar()
     {
-        /* $this->start_date;
-        $this->end_date; */
-        dd(34);
+        $this->start_date;
+        $this->end_date;
+        //dd(34);
+        //$this->resetPage();
     }
 }

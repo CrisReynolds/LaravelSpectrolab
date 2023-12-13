@@ -32,7 +32,7 @@
         </section>
         <div class="my-4">
 
-            <form wire:submit.prevent="export" class="grid md:grid-cols-5 md:gap-6" autocomplete="off">
+            <form wire:submit.prevent="consultar" class="grid md:grid-cols-5 md:gap-6" autocomplete="off">
                 <a href="{{ url('/compras') }}"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >Atrás</a>
@@ -56,11 +56,12 @@
                 </div>
                 <div class="mt-0">
                     <button type="submit"
-                        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Consultar</button>
+                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Consultar</button>
                 </div>
-
+                <a wire:click="export"
+                    class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Exportar</a>
             </form>
-            <a wire:click="consultar">Consultar</a>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -118,29 +119,36 @@
                                 {{ $compra->fecha_compra }}
                             </td>
                             <td class="px-6 py-4">
+                                {{ $compra->cantidad }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $compra->unidad_ref }}
+                            </td>
+                            <td class="px-6 py-4">
                                 {{ $compra->detalle }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $compra->observacion_insumo }}
+                                {{ $compra->marca }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $compra->cantidad }}
+                                {{ $compra->codigo }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $compra->importe }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ round($compra->importe / $compra->cantidad, 2) }}
+                                {{ $compra->unit }}
                             </td>
-                            <td class="flex items-center px-6 py-4 space-x-3">
-                                <button
-                                    onclick="return confirm('Esta seguro de eliminar este registro?') || event.stopImmediatePropagation()"
-                                    wire:click="deleteDetalleCompra({{ $compra->id }})"
-                                    class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                                {{-- <a href="" class="btn bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center"> <i class="fa-solid fa-trash"></i></a> --}}
+                            <td class="px-6 py-4">
+                                {{ $compra->nombre }}
                             </td>
+                            <td class="px-6 py-4">
+                                {{ $compra->num_factura }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $compra->num_vale_ingreso }}
+                            </td>
+
                         </tr>
                     @endforeach
                     @endisset
