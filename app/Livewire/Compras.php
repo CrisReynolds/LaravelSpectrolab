@@ -6,19 +6,14 @@ use App\Exports\ExportCompras;
 use App\Models\Compra;
 use App\Models\Proveedor;
 use App\Models\User;
-use App\Models\DetalleCompra;
-use App\Models\Insumo;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Maatwebsite\Excel\Facades\Excel;
 use Psy\Readline\Hoa\Console;
 
 class Compras extends Component
 {
     use WithPagination;
     public $fecha_compra, $fecha_entrega, $num_factura, $num_vale_ingreso, $compraId, $proveedor_id, $usuario_id;
-    /* Filtro */
-    public $start_date, $end_date;
 
     protected $rules = [
         'fecha_compra' => 'required|date',
@@ -118,8 +113,5 @@ class Compras extends Component
             $this->reset('fecha_compra', 'fecha_entrega', 'importe', 'num_factura', 'num_vale_ingreso', 'proveedor_id', 'usuario_id');
         }
     }
-    /* Export  */
-    public function export(){
-        return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras.xlsx');
-    }
+
 }
