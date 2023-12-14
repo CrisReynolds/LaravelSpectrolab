@@ -1,1 +1,1 @@
-@livewire('registrar-insumos')
+{{-- @livewire('registrar-insumos') --}}

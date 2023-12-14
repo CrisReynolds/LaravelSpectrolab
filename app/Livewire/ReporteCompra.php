@@ -77,14 +77,15 @@ class ReporteCompra extends Component
     /* Export  */
     public function export()
     {
+        $now = now()->format('Y-m-d');
         if ($this->start_date != "" && $this->end_date != ""){
-            return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras.xlsx');
+            return Excel::download(new ExportCompras($this->start_date, $this->end_date),  'compras_' . $now . '.xlsx');
         }
         else{
-            $now = now()->format('Y-m-d');
+
             $startDate = Carbon::now();
             $then = $startDate->firstOfMonth()->format('Y-m-d');
-            return Excel::download(new ExportCompras($then, $now),  'compras.xlsx');
+            return Excel::download(new ExportCompras($then, $now),  'compras_' . $now . '.xlsx');
         }
 
     }

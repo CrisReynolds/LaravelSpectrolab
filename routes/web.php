@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::get("gestion_usuarios", [UsuariosController::class, "index"])->name("vista_usuarios");
 Route::get('/inventario', function () {
-    return view('insumos.registro_insumos');
+    return view('insumos.index');
 })->name('vista_insumos');
 Route::get('/unidades', function () {
     return view('unidades.ver-unidades');
