@@ -4,15 +4,50 @@ namespace App\Livewire;
 
 use App\Models\DetalleCompra;
 use App\Models\DetalleConsumo;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Stock extends Component
 {
     public function allStock()
     {
+
+        $stock = DetalleCompra::join('insumos', 'insumos.id', 'detalle_compras.insumo_id')
+        ->join('unidades', 'unidades.id', 'insumos.unidad_id')
+        //->whereDate('fecha_compra', '>=', $then)
+        //->whereDate('fecha_compra', '<=', $now)
+        ->get([
+            'detalle_compras.created_at',
+            'detalle_compras.cantidad',
+            'unidades.unidad_ref',
+            'insumos.detalle',
+            'insumos.marca',
+            'insumos.codigo',
+            DB::raw('ROUND(detalle_compras.importe/detalle_compras.cantidad, 4) as precio')
+        ]);
+
+        $consumos = DetalleConsumo::orderBy('id','desc')->get();
+        //sacar solo la cantidad
+        $idInsumo = array();
+        $arrCant = array();
+        foreach($consumos as $consumo){
+            array_push($idInsumo, $consumo->insumo_id);
+            array_push($arrCant, $consumo->cantidad);
+        }
+
+
+
+        dd($idInsumo);
+
+        return $stock;
+
         $detallesConsumo = DetalleConsumo::selectRaw('insumo_id, sum(cantidad) as cant')
         ->groupBy('insumo_id')
         ->get();
+        //dd($detallesConsumo);
+        /* if(count($detallesConsumo) >= 0){
+            return $detallesConsumo;
+        } */
         //dd($detalles[1]->cant);
         $idInsumo = array();
         $arrInsumo = array();
