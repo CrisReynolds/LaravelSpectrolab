@@ -2,7 +2,9 @@
     <b class="mb-2 text-sm font-medium text-gray-900">Fecha compra:</b><span
         class="mb-2 text-sm font-medium text-gray-900">{{ $compra->fecha_compra->format('Y-m-d') }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">Fecha entrega:</b><span
-        class="mb-2 text-sm font-medium text-gray-900">{{ $compra->fecha_entrega->format('Y-m-d') }}</span><br>
+        class="mb-2 text-sm font-medium text-gray-900">@if ($compra->fecha_entrega)
+            {{ $compra->fecha_entrega->format('Y-m-d') }}
+        @endif </span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">No Factura:</b><span
         class="mb-2 text-sm font-medium text-gray-900">{{ $compra->num_factura }}</span><br>
     <b class="mb-2 text-sm font-medium text-gray-900">No vale ingreso:</b><span

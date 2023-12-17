@@ -35,7 +35,10 @@ class DetalleCompras extends Component
             $detalleCompra->update([
                 'observacion_insumo' => $this->observacion_insumo,
                 'cantidad' => $this->cantidad,
-                'importe' => $this->importe
+                'importe' => $this->importe,
+                'punit' => $this->importe/$this->cantidad,
+                'cantstock' => $this->cantidad,
+                'punitstock' => $this->importe / $this->cantidad
             ]);
         }else{
             DetalleCompra::create([
@@ -43,7 +46,10 @@ class DetalleCompras extends Component
                 'compras_id' => $id,
                 'observacion_insumo' => $this->observacion_insumo,
                 'cantidad' => $this->cantidad,
-                'importe' => $this->importe
+                'importe' => $this->importe,
+                'punit' => $this->importe / $this->cantidad,
+                'cantstock' => $this->cantidad,
+                'punitstock' => $this->importe / $this->cantidad
             ]);
         }
 

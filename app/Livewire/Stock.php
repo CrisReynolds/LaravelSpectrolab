@@ -12,7 +12,7 @@ class Stock extends Component
     public function allStock()
     {
 
-        $stock = DetalleCompra::join('insumos', 'insumos.id', 'detalle_compras.insumo_id')
+        return DetalleCompra::join('insumos', 'insumos.id', 'detalle_compras.insumo_id')
         ->join('unidades', 'unidades.id', 'insumos.unidad_id')
         //->whereDate('fecha_compra', '>=', $then)
         //->whereDate('fecha_compra', '<=', $now)
@@ -23,7 +23,7 @@ class Stock extends Component
             'insumos.detalle',
             'insumos.marca',
             'insumos.codigo',
-            DB::raw('ROUND(detalle_compras.importe/detalle_compras.cantidad, 4) as precio')
+            DB::raw('ROUND(punitstock, 4) as precio')
         ]);
 
         $consumos = DetalleConsumo::orderBy('id','desc')->get();
@@ -39,7 +39,7 @@ class Stock extends Component
 
         dd($idInsumo);
 
-        return $stock;
+        //return $stock;
 
         $detallesConsumo = DetalleConsumo::selectRaw('insumo_id, sum(cantidad) as cant')
         ->groupBy('insumo_id')

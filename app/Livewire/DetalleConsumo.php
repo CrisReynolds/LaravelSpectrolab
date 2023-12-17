@@ -116,7 +116,74 @@ class DetalleConsumo extends Component
     public function storeDetalleConsumo($id)
     {
         $this->validate();
-        $detalleConsumo = ModelsDetalleConsumo::where('insumo_id', $this->insumo_id)->where('consumos_id', $id)->first();
+        $detComp = DetalleCompra::where('insumo_id', $this->insumo_id)->where('cantstock','>', 0)->first();
+        if(!$detComp){
+            return 0;
+        }
+        if($this->cantidad > $detComp->cantidad){
+            $detComp->cantstock = 0;
+            $detComp->punitstock = 0;
+            $detComp->save();
+            ModelsDetalleConsumo::create([
+                'consumos_id' => $id,
+                'insumo_id' => $this->insumo_id,
+                'cantidad' => $detComp->cantidad,
+                'importe' => $detComp->importe,
+                'punit' => $detComp->importe/ $detComp->cantidad
+            ]);
+
+            /* Creando otra fila para el restante */
+            $detComp2 = DetalleCompra::where('insumo_id', $this->insumo_id)->where('cantstock', '>', 0)->first();
+            //dd($this->cantidad);
+            $dif = $this->cantidad - $detComp->cantidad;
+            $ctck = $detComp2->cantidad - $dif;
+            $detComp2->cantstock = $ctck ;
+            if($ctck <= 0){
+                $detComp2->punitstock = 0;
+            }else{
+                $detComp2->punitstock = $detComp2->importe/$ctck;
+            }
+            $detComp2->save();
+            ModelsDetalleConsumo::create([
+                'consumos_id' => $id,
+                'insumo_id' => $this->insumo_id,
+                'cantidad' => $dif,
+                'importe' => $detComp2->importe,
+                'punit' => $detComp2->importe / $dif
+            ]);
+
+        }else if($this->cantidad == $detComp->cantidad){
+            $detComp3 = DetalleCompra::where('insumo_id', $this->insumo_id)->where('cantstock', '>', 0)->first();
+            //dd($this->cantidad);
+            $ctck = $detComp3->cantidad - $this->cantidad;
+            $detComp3->cantstock = $ctck;
+            $detComp3->punitstock = 0;
+            $detComp3->save();
+            ModelsDetalleConsumo::create([
+                'consumos_id' => $id,
+                'insumo_id' => $this->insumo_id,
+                'cantidad' => $ctck,
+                'importe' => $detComp3->importe,
+                'punit' => 0
+            ]);
+        } else if ($this->cantidad < $detComp->cantidad) {
+            $detComp4 = DetalleCompra::where('insumo_id', $this->insumo_id)->where('cantstock', '>', 0)->first();
+            //dd($this->cantidad);
+            $ctck = $detComp4->cantstock - $this->cantidad;
+            $detComp4->cantstock = $ctck;
+            $detComp4->punitstock = $detComp4->importe / $ctck;
+            $detComp4->save();
+            ModelsDetalleConsumo::create([
+                'consumos_id' => $id,
+                'insumo_id' => $this->insumo_id,
+                'cantidad' => $ctck,
+                'importe' => $detComp4->importe,
+                'punit' => $detComp4->importe / $ctck
+            ]);
+        }else{
+            dd('No hay casos');
+        }
+        /* $detalleConsumo = ModelsDetalleConsumo::where('insumo_id', $this->insumo_id)->where('consumos_id', $id)->first();
         if ($detalleConsumo) {
             $detalleConsumo->update([
                 'cantidad' => $this->cantidad,
@@ -127,7 +194,7 @@ class DetalleConsumo extends Component
                 'insumo_id' => $this->insumo_id,
                 'cantidad' => $this->cantidad,
             ]);
-        }
+        } */
         session()->flash('success', 'Detalle consumo registrada correctamente.');
     }
     public function deleteDetalleConsumo($id)

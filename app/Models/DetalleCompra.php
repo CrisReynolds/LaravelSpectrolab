@@ -43,7 +43,10 @@ class DetalleCompra extends Model
         'insumo_id',
         'observacion_insumo',
         'importe',
-        'cantidad'
+        'cantidad',
+        'punit',
+        'cantstock',
+        'punitstock'
     ];
 
     public function compra()

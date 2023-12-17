@@ -92,7 +92,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('consumos_id')->references('id')->on('consumos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
-            $table->double('cantidad', 12, 2);
+            $table->double('cantidad', 12, 4);
+            $table->double('importe', 12, 4)->nullable();
+            $table->double('punit', 12, 4)->nullable();
             $table->timestamps();
         });
 
@@ -101,8 +103,11 @@ return new class extends Migration
             $table->foreignId('compras_id')->references('id')->on('compras')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('insumo_id')->references('id')->on('insumos')->onUpdate('cascade')->onDelete('cascade');
             $table->string('observacion_insumo', 100)->nullable();
-            $table->double('cantidad', 12, 2);
-            $table->double('importe', 16, 4);
+            $table->double('cantidad', 12, 4);
+            $table->double('importe', 12, 4);
+            $table->double('punit', 12, 4)->nullable();
+            $table->double('cantstock', 12, 4)->nullable();
+            $table->double('punitstock', 12, 4)->nullable();
             $table->timestamps();
         });
     }

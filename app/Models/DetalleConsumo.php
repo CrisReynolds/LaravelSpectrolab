@@ -37,7 +37,9 @@ class DetalleConsumo extends Model
 	protected $fillable = [
 		'consumos_id',
 		'insumo_id',
-        'cantidad'
+        'cantidad',
+        'importe',
+        'punit'
 	];
 
 	public function consumo()
