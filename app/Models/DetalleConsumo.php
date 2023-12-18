@@ -39,7 +39,8 @@ class DetalleConsumo extends Model
 		'insumo_id',
         'cantidad',
         'importe',
-        'punit'
+        'punit',
+        'detcompra_id'
 	];
 
 	public function consumo()

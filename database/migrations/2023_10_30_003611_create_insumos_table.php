@@ -95,6 +95,7 @@ return new class extends Migration
             $table->double('cantidad', 12, 4);
             $table->double('importe', 12, 4)->nullable();
             $table->double('punit', 12, 4)->nullable();
+            $table->double('detcompra_id', 12, 4)->nullable();
             $table->timestamps();
         });
 
