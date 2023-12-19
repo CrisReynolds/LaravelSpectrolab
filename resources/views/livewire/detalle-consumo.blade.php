@@ -32,6 +32,8 @@
             <div class="my-4">
                 <a href="{{ url('/consumos') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Atrás</a>
+                <a href="{{ route('consumo.vale', $consumo_id) }}"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Imprimir</a>
             </div>
         </section>
         @include('consumos.detalle.index')

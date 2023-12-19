@@ -32,7 +32,10 @@
             <div class="my-4">
                 <a href="{{ url('/compras') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Atrás</a>
+                <a href="{{ route('compras.vale', $compra_id) }}"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Imprimir</a>
             </div>
+
         </section>
         @include('compras.detalle.index')
     </x-menu>
