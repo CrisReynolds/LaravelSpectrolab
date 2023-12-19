@@ -56,6 +56,10 @@ Route::get('/compras/reporte', [ReporteCompra::class, 'index'])->name('compras.r
 Route::get('/consumo/reporte', [ReporteConsumo::class, 'index'])->name('consumo.reporte');
 Route::get('/export', [Compras::class, 'export'])->name('compras.export');
 
+Route::get('/vales/ingreso', function () {
+    return view('vales.vale-ingreso');
+})->name('vista_vales_ingreso');
+
 Route::get('/consumos/{id}/detalle', [DetalleConsumo::class, 'index'])->name('consumo.detalle');
 Route::get('/consumos/{id}/vale', [ValeSalida::class, 'index'])->name('consumo.vale');
 // Route::delete("inventario/{insumo}",[InsumosController::class,"confirmarInsumoEliminacion"])->name("eliminar_insumo");
